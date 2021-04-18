@@ -8,13 +8,16 @@
 
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_sunmi_printer/src/enums.dart';
+
 import 'sunmi_col.dart';
 import 'sunmi_styles.dart';
 
 class SunmiPrinter {
   static const String RESET = "reset";
+
   // static const String START_PRINT = "startPrint";
   // static const String STOP_PRINT = "stopPrint";
   // static const String IS_PRINTING = "isPrinting";
@@ -26,6 +29,7 @@ class SunmiPrinter {
   static const String PRINT_TEXT = "printText";
   static const String PRINT_ROW = "printRow";
   static const String PRINT_IMAGE = "printImage";
+  static const String IS_CONNECT = "isConnect";
 
   static const MethodChannel _channel =
       const MethodChannel('flutter_sunmi_printer');
@@ -108,6 +112,10 @@ class SunmiPrinter {
 
   static Future<void> boldOn() async {
     await _channel.invokeMethod(BOLD_ON);
+  }
+
+  static Future<bool> isConnect() async {
+    return await _channel.invokeMethod(IS_CONNECT);
   }
 
   static Future<void> boldOff() async {
